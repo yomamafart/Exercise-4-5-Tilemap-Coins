@@ -16,6 +16,10 @@ The expectations for this exercise are that you will
 
 ---
 
+A demonstration of this exercise is available at [https://youtu.be/JwRejlfLKmw](https://youtu.be/JwRejlfLKmw).
+
+---
+
 ## Instructions
 
 Fork this repository. When that process has completed, make sure that the top of the repository reads [your username]/Exercise-4-5-Tilemap-Coins. Edit the LICENSE and replace BL-MSCH-C220 with your full name. Commit your changes.
