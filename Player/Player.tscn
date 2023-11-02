@@ -1,6 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://dvwf2pbeavc18"]
+[gd_scene load_steps=26 format=3 uid="uid://dvwf2pbeavc18"]
 
-[ext_resource type="Texture2D" uid="uid://dj0hy75c50bl7" path="res://Assets/player.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bmugn0qs1mkkx" path="res://Assets/player.png" id="1"]
 [ext_resource type="Script" path="res://StateMachine/Jumping.gd" id="2"]
 [ext_resource type="Script" path="res://StateMachine/Moving.gd" id="3"]
 [ext_resource type="Script" path="res://StateMachine/StateMachine.gd" id="4"]
@@ -132,6 +132,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="16"]
 size = Vector2(62, 185)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x0tpk"]
+radius = 30.0
+height = 210.0
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(200, 200)
 script = ExtResource("9")
@@ -170,4 +174,13 @@ script = ExtResource("5")
 wait_time = 0.2
 one_shot = true
 
+[node name="Coin_Collector" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin_Collector"]
+position = Vector2(-5, 23)
+shape = SubResource("CapsuleShape2D_x0tpk")
+
 [connection signal="timeout" from="StateMachine/Coyote/Timer" to="StateMachine/Coyote" method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Coin_Collector" to="." method="_on_coin_collector_body_entered"]
