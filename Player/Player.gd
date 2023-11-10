@@ -43,10 +43,13 @@ func move_vector():
 	return Vector2(Input.get_action_strength("right") - Input.get_action_strength("left"),1.0)
 
 func _unhandled_input(event):
+	var Walk = get_node("/root/Game/Walk")
 	if event.is_action_pressed("left"):
 		direction = -1
+		Walk.play()
 	if event.is_action_pressed("right"):
 		direction = 1
+		Walk.play()
 
 func set_animation(anim, off=Vector2.ZERO):
 	if $AnimatedSprite2D.animation == anim: return
@@ -72,8 +75,11 @@ func die():
 
 
 func _on_coin_collector_body_entered(body):
+	var Collide = get_node("/root/Game/Collide")
 	if body.name == "Coins":
 		body.get_coin(global_position)
+		Collide.play()
+		
 
 
 func _on_animated_sprite_2d_animation_finished():

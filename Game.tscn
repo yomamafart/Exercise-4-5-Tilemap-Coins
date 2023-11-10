@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://xpdr741qjqi3"]
+[gd_scene load_steps=57 format=3 uid="uid://xpdr741qjqi3"]
 
 [ext_resource type="Texture2D" uid="uid://bq0jpqvvjp5a0" path="res://Assets/tilesheet_complete_2X.png" id="1"]
 [ext_resource type="Script" path="res://Camera.gd" id="2"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://c44mo86otlisf" path="res://Enemies/Golem.tscn" id="5_nm4cu"]
 [ext_resource type="PackedScene" uid="uid://cj60hu411fjj0" path="res://Enemies/Wolf.tscn" id="6_p6kyy"]
 [ext_resource type="PackedScene" path="res://Enemies/Bat.tscn" id="7_4ykgs"]
+[ext_resource type="AudioStream" uid="uid://cpwcffelwv3ip" path="res://Assets/falling down.wav" id="9_gw642"]
+[ext_resource type="AudioStream" uid="uid://c7cjy6fmi0vfe" path="res://Assets/paddle game music'.mp3" id="10_8ria6"]
+[ext_resource type="AudioStream" uid="uid://duoah3yic08la" path="res://Assets/Ibomb.wav" id="11_n4x2b"]
 [ext_resource type="Script" path="res://StateMachine/Player_Container.gd" id="12"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c34oo"]
@@ -587,3 +590,16 @@ text = "Coins: 0"
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_p6446")
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_gw642")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_8ria6")
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_n4x2b")
+
+[node name="Collide" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AudioStreamPlayer2D5" type="AudioStreamPlayer2D" parent="."]
