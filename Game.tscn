@@ -4,13 +4,13 @@
 [ext_resource type="Script" path="res://Camera.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://e2k3c8e5tnq6" path="res://Assets/coin.png" id="2_n61pl"]
 [ext_resource type="Script" path="res://Player/Coins.gd" id="3_aj7pm"]
+[ext_resource type="Script" path="res://Player/Player_Container.gd" id="4_g6pkg"]
 [ext_resource type="PackedScene" uid="uid://c44mo86otlisf" path="res://Enemies/Golem.tscn" id="5_nm4cu"]
 [ext_resource type="PackedScene" uid="uid://cj60hu411fjj0" path="res://Enemies/Wolf.tscn" id="6_p6kyy"]
 [ext_resource type="PackedScene" path="res://Enemies/Bat.tscn" id="7_4ykgs"]
 [ext_resource type="AudioStream" uid="uid://cpwcffelwv3ip" path="res://Assets/falling down.wav" id="9_gw642"]
 [ext_resource type="AudioStream" uid="uid://c7cjy6fmi0vfe" path="res://Assets/paddle game music'.mp3" id="10_8ria6"]
 [ext_resource type="AudioStream" uid="uid://duoah3yic08la" path="res://Assets/Ibomb.wav" id="11_n4x2b"]
-[ext_resource type="Script" path="res://StateMachine/Player_Container.gd" id="12"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c34oo"]
 texture = ExtResource("1")
@@ -531,7 +531,7 @@ layer_0/tile_data = PackedInt32Array(2818207, 0, 0, 1245287, 0, 0, 2294056, 0, 0
 script = ExtResource("3_aj7pm")
 
 [node name="Player_Container" type="Node2D" parent="."]
-script = ExtResource("12")
+script = ExtResource("4_g6pkg")
 
 [node name="Enemy_Container" type="Node2D" parent="."]
 
@@ -543,6 +543,9 @@ position = Vector2(4539.84, 1037.99)
 
 [node name="Bat" parent="Enemy_Container" instance=ExtResource("7_4ykgs")]
 position = Vector2(5723.49, -689.563)
+
+[node name="Goblin" parent="Enemy_Container" instance=ExtResource("6_p6kyy")]
+position = Vector2(4013.44, 104.229)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("4")
@@ -596,6 +599,7 @@ stream = ExtResource("9_gw642")
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_8ria6")
+autoplay = true
 
 [node name="Walk" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_n4x2b")
