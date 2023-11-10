@@ -31,6 +31,8 @@ func _physics_process(_delta):
 	
 	if is_on_floor():
 		double_jumped = false
+		if Input.is_action_just_pressed("attack"):
+			SM.set_state("Attacking")
 
 func is_moving():
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
@@ -46,10 +48,23 @@ func _unhandled_input(event):
 	if event.is_action_pressed("right"):
 		direction = 1
 
-func set_animation(anim):
+func set_animation(anim, off=Vector2.ZERO):
 	if $AnimatedSprite2D.animation == anim: return
 	if $AnimatedSprite2D.sprite_frames.has_animation(anim): $AnimatedSprite2D.play(anim)
 	else: $AnimatedSprite2D.play()
+	$AnimatedSprite2D.offset = off
+
+func attack():
+	if $Attack.is_colliding():
+		var target = $Attack.get_collider()
+		print(target)
+		if target.has_method("damage"):
+			target.damage()
+	if $Attack_low.is_colliding():
+		var target = $Attack_low.get_collider()
+		print(target)
+		if target.has_method("damage"):
+			target.damage()
 
 func die():
 	queue_free()
@@ -59,3 +74,8 @@ func die():
 func _on_coin_collector_body_entered(body):
 	if body.name == "Coins":
 		body.get_coin(global_position)
+
+
+func _on_animated_sprite_2d_animation_finished():
+	if $AnimatedSprite2D.animation == "Attacking":
+		SM.set_state("Idle")

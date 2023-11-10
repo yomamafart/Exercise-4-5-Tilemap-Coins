@@ -1,6 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://dvwf2pbeavc18"]
+[gd_scene load_steps=30 format=3 uid="uid://dvwf2pbeavc18"]
 
-[ext_resource type="Texture2D" uid="uid://bmugn0qs1mkkx" path="res://Assets/player.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dvkujlfn5fnup" path="res://Assets/player.png" id="1"]
 [ext_resource type="Script" path="res://StateMachine/Jumping.gd" id="2"]
 [ext_resource type="Script" path="res://StateMachine/Moving.gd" id="3"]
 [ext_resource type="Script" path="res://StateMachine/StateMachine.gd" id="4"]
@@ -9,6 +9,22 @@
 [ext_resource type="Script" path="res://StateMachine/Falling.gd" id="7"]
 [ext_resource type="Script" path="res://StateMachine/Moving_and_Jumping.gd" id="8"]
 [ext_resource type="Script" path="res://Player/Player.gd" id="9"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmjsh"]
+atlas = ExtResource("1")
+region = Rect2(192, 140, 32, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khj1j"]
+atlas = ExtResource("1")
+region = Rect2(224, 140, 32, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1na87"]
+atlas = ExtResource("1")
+region = Rect2(256, 140, 32, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrl55"]
+atlas = ExtResource("1")
+region = Rect2(288, 140, 32, 70)
 
 [sub_resource type="AtlasTexture" id="11"]
 atlas = ExtResource("1")
@@ -64,7 +80,19 @@ region = Rect2(192, 0, 32, 70)
 
 [sub_resource type="SpriteFrames" id="15"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmjsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khj1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1na87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrl55")
+}],
 "loop": true,
 "name": &"Attacking",
 "speed": 5.0
@@ -143,7 +171,7 @@ script = ExtResource("9")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("15")
-animation = &"Idle"
+animation = &"Attacking"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 23.5)
@@ -182,5 +210,6 @@ collision_mask = 8
 position = Vector2(-5, 23)
 shape = SubResource("CapsuleShape2D_x0tpk")
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="StateMachine/Coyote/Timer" to="StateMachine/Coyote" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Coin_Collector" to="." method="_on_coin_collector_body_entered"]
